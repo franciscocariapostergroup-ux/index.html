@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POSTER Group — Publicidad y Branding en Eventos Deportivos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+:root{
+  --navy:#1e3a6e;
+  --navy-dk:#142850;
+  --navy-lt:#2a4d8e;
+  --navy-bg:#0e1f3d;
+  --lime:#8dc63f;
+  --lime-dk:#6fa82e;
+  --white:#ffffff;
+  --off-white:#f5f6f8;
+  --gray-100:#eef0f4;
+  --gray-200:#d8dde6;
+  --gray-300:#b8c0cc;
+  --gray-400:#8d97a5;
+  --gray-600:#4a5568;
+  --gray-800:#1a2332;
+  --text:#1a2332;
+  --text-md:#4a5568;
+  --text-lt:#8d97a5;
+  --border:rgba(30,58,110,0.12);
+}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* ── UTILITIES ── */
+.label{display:inline-flex;align-items:center;gap:0.55rem;font-size:0.68rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--lime);margin-bottom:0.9rem}
+.label::before{content:'';display:block;width:20px;height:2px;background:var(--lime);border-radius:1px;flex-shrink:0}
+.label.on-dark{color:var(--lime)}
+.h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.9rem,3.8vw,3rem);font-weight:700;line-height:1.06;letter-spacing:0.01em;text-transform:uppercase;color:var(--navy-dk)}
+.h2.white{color:var(--white)}
+.body-text{font-size:0.95rem;font-weight:400;line-height:1.78;color:var(--text-md)}
+.body-text.white{color:rgba(255,255,255,0.6)}
+.section{padding:clamp(3.5rem,7vw,6rem) clamp(1.5rem,5.5vw,4.5rem)}
+
+/* ── BUTTONS ── */
+.btn{display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.78rem 1.75rem;border-radius:2px;transition:background 0.2s,color 0.2s,border-color 0.2s,transform 0.15s;cursor:pointer;border:none}
+.btn:hover{transform:translateY(-1px)}
+.btn-lime{background:var(--lime);color:var(--navy-dk)}.btn-lime:hover{background:var(--lime-dk)}
+.btn-outline-white{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.4)}.btn-outline-white:hover{border-color:var(--white);background:rgba(255,255,255,0.07)}
+.btn-outline-navy{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}.btn-outline-navy:hover{background:var(--navy);color:var(--white)}
+.btn-wa{display:inline-flex;align-items:center;gap:0.5rem;background:#25d366;color:#fff;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.78rem 1.75rem;border-radius:2px;transition:background 0.2s,transform 0.15s}.btn-wa:hover{background:#1cb857;transform:translateY(-1px)}
+.btn-wa svg{width:17px;height:17px;flex-shrink:0}
+
+/* ══════════════════════════════
+   NAVBAR
+══════════════════════════════ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5.5vw,4.5rem);transition:background 0.35s,box-shadow 0.35s}
+#nav.scrolled{background:rgba(14,31,61,0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(255,255,255,0.06)}
+.nav-logo svg{height:34px;width:auto;display:block}
+.nav-links{display:flex;align-items:center;gap:1.8rem;list-style:none}
+.nav-links a{font-size:0.77rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:rgba(255,255,255,0.7);transition:color 0.2s}.nav-links a:hover{color:var(--white)}
+.nav-cta{font-size:0.72rem;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--navy-dk);background:var(--lime);padding:0.5rem 1.25rem;border-radius:2px;transition:background 0.2s}.nav-cta:hover{background:var(--lime-dk)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.8px;background:var(--white);border-radius:2px;transition:all 0.3s}
+.mob-menu{display:none;position:fixed;inset:0;background:var(--navy-bg);z-index:600;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:700;text-transform:uppercase;color:var(--white);letter-spacing:0.04em}
+.mob-close{position:absolute;top:1.4rem;right:1.8rem;background:none;border:none;color:var(--white);font-size:1.8rem;cursor:pointer;line-height:1}
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+#hero{min-height:100vh;background:var(--navy-bg);display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(1.5rem,5.5vw,4.5rem) clamp(3rem,5vw,4.5rem);position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:72px 72px;pointer-events:none}
+.hero-vline{position:absolute;top:0;left:clamp(1.5rem,5.5vw,4.5rem);width:2px;height:100%;background:linear-gradient(to bottom,transparent 10%,var(--lime) 40%,var(--lime) 60%,transparent 90%);opacity:0.35;pointer-events:none}
+.hero-diag{position:absolute;top:0;right:0;width:42%;height:100%;background:linear-gradient(135deg,rgba(30,58,110,0.5) 0%,transparent 65%);clip-path:polygon(25% 0,100% 0,100% 100%,0 100%);pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:860px;padding-left:1.5rem}
+.hero-eyebrow{font-size:0.68rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--lime);margin-bottom:1.4rem;display:flex;align-items:center;gap:0.6rem}
+.hero-eyebrow::before{content:'';display:block;width:24px;height:2px;background:var(--lime);border-radius:1px}
+.hero-h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,7vw,6rem);font-weight:700;line-height:1.02;letter-spacing:0.01em;text-transform:uppercase;color:var(--white);margin-bottom:1.5rem}
+.hero-sub{font-size:clamp(0.9rem,1.3vw,1.05rem);font-weight:400;line-height:1.78;color:rgba(255,255,255,0.58);max-width:500px;margin-bottom:2.2rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:0.9rem;margin-bottom:3.5rem}
+.hero-stats{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid rgba(255,255,255,0.1);padding-top:2rem}
+.hstat{padding-right:2.5rem;border-right:1px solid rgba(255,255,255,0.1);margin-right:2.5rem}
+.hstat:last-child{border-right:none;margin-right:0}
+.hstat-n{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,3.5vw,2.6rem);font-weight:700;color:var(--white);line-height:1}
+.hstat-n sup{color:var(--lime);font-size:60%;margin-left:1px}
+.hstat-l{font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-top:0.25rem}
+
+/* ══════════════════════════════
+   EMPRESA
+══════════════════════════════ */
+#empresa{background:var(--white)}
+.empresa-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,6vw,6rem);align-items:start;margin-top:2.5rem}
+.empresa-text p{margin-bottom:1.1rem}
+.empresa-text p:last-child{margin-bottom:0}
+.empresa-aside{display:flex;flex-direction:column;gap:10px}
+.ea-block{background:var(--off-white);border:1px solid var(--gray-100);padding:1.5rem 1.5rem 1.5rem 1.75rem;position:relative;border-left:3px solid var(--lime)}
+.ea-block-title{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;color:var(--navy-dk);margin-bottom:0.35rem}
+.ea-block-text{font-size:0.83rem;line-height:1.65;color:var(--text-md)}
+
+/* ══════════════════════════════
+   PRODUCTOS & SERVICIOS
+══════════════════════════════ */
+#servicios{background:var(--off-white)}
+.servicios-intro{max-width:640px;margin-bottom:2.5rem}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gray-200);border:1px solid var(--gray-200)}
+.svc-card{background:var(--white);padding:1.8rem 1.6rem;position:relative;overflow:hidden;transition:background 0.25s}
+.svc-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease}
+.svc-card:hover{background:#fafbfc}.svc-card:hover::after{transform:scaleX(1)}
+.svc-n{font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.2em;color:var(--lime);margin-bottom:0.6rem;text-transform:uppercase}
+.svc-title{font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:700;text-transform:uppercase;letter-spacing:0.02em;color:var(--navy-dk);margin-bottom:0.6rem;line-height:1.2}
+.svc-text{font-size:0.83rem;line-height:1.68;color:var(--text-md)}
+
+/* ══════════════════════════════
+   3D BRANDING
+══════════════════════════════ */
+#branding3d{background:var(--navy-dk);color:var(--white)}
+.branding-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,6vw,6rem);align-items:center;margin-top:2.5rem}
+.branding-visual{position:relative;height:380px;display:flex;flex-direction:column;gap:10px}
+.bv-main{flex:2;background:rgba(141,198,63,0.1);border:1px solid rgba(141,198,63,0.2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.bv-main-label{font-family:'Barlow Condensed',sans-serif;font-size:clamp(4rem,6vw,7rem);font-weight:700;color:rgba(255,255,255,0.04);letter-spacing:0.06em;user-select:none;position:absolute}
+.bv-main-inner{position:relative;z-index:1;text-align:center}
+.bv-main-inner .big-num{font-family:'Barlow Condensed',sans-serif;font-size:3.5rem;font-weight:700;color:var(--lime);line-height:1}
+.bv-main-inner .big-lbl{font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:0.3rem}
+.bv-row{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bv-sm{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.25rem}
+.bv-sm-n{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:700;color:var(--white);line-height:1}
+.bv-sm-l{font-size:0.6rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.branding-text .body-text{margin-bottom:1rem}
+.branding-text .body-text:last-of-type{margin-bottom:1.5rem}
+.highlight-box{background:rgba(141,198,63,0.08);border-left:3px solid var(--lime);padding:1.1rem 1.25rem;margin-top:1.5rem}
+.highlight-box p{font-size:0.85rem;line-height:1.65;color:rgba(255,255,255,0.6);font-style:italic}
+
+/* ══════════════════════════════
+   EVENTOS
+══════════════════════════════ */
+#eventos{background:var(--white)}
+.eventos-intro{max-width:620px;margin-bottom:2.5rem}
+.ev-categories{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);margin-bottom:2.5rem}
+.ev-cat{padding:1.4rem 1.5rem;border-right:1px solid var(--border);background:var(--white)}
+.ev-cat:last-child{border-right:none}
+.ev-cat-title{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--navy-dk);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
+.ev-cat-title::before{content:'';width:6px;height:6px;background:var(--lime);border-radius:50%;display:block;flex-shrink:0}
+.ev-cat-text{font-size:0.8rem;line-height:1.6;color:var(--text-md)}
+.ev-list-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ev-list-block{background:var(--off-white);border:1px solid var(--gray-100);padding:1.5rem 1.75rem}
+.ev-list-title{font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--navy-dk);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--gray-200)}
+.ev-list ul{list-style:none;display:flex;flex-direction:column;gap:0.45rem}
+.ev-list ul li{font-size:0.8rem;line-height:1.5;color:var(--text-md);padding-left:1rem;position:relative}
+.ev-list ul li::before{content:'';position:absolute;left:0;top:7px;width:4px;height:4px;background:var(--lime);border-radius:50%}
+
+/* ══════════════════════════════
+   PROYECTOS
+══════════════════════════════ */
+#proyectos{background:var(--gray-100)}
+.proy-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.proy-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:250px;gap:8px}
+.proy-card{position:relative;overflow:hidden;cursor:pointer}
+.proy-card:nth-child(1){grid-column:span 7}
+.proy-card:nth-child(2){grid-column:span 5}
+.proy-card:nth-child(3){grid-column:span 4}
+.proy-card:nth-child(4){grid-column:span 4}
+.proy-card:nth-child(5){grid-column:span 4}
+.pc-bg{position:absolute;inset:0;transition:transform 0.5s ease}
+.proy-card:hover .pc-bg{transform:scale(1.03)}
+.pc-b1{background:linear-gradient(135deg,#0d2b55 0%,#1e3a6e 100%)}
+.pc-b2{background:linear-gradient(135deg,#122040 0%,#1a3060 100%)}
+.pc-b3{background:linear-gradient(135deg,#0e2244 0%,#1b3566 100%)}
+.pc-b4{background:linear-gradient(135deg,#162848 0%,#213870 100%)}
+.pc-b5{background:linear-gradient(135deg,#0c1e3a 0%,#172e5a 100%)}
+.pc-letter{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:clamp(3.5rem,6vw,7rem);font-weight:700;color:rgba(255,255,255,0.05);letter-spacing:0.06em;user-select:none}
+.pc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,25,55,0.93) 0%,rgba(10,25,55,0.35) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.3rem 1.4rem;transition:background 0.3s}
+.proy-card:hover .pc-overlay{background:linear-gradient(to top,rgba(10,25,55,0.97) 0%,rgba(10,25,55,0.6) 55%,rgba(10,25,55,0.1) 100%)}
+.pc-cat{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--lime);margin-bottom:0.25rem}
+.pc-name{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;text-transform:uppercase;color:var(--white);line-height:1.2;letter-spacing:0.02em}
+.pc-arrow{position:absolute;top:1rem;right:1rem;width:28px;height:28px;background:var(--lime);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0.75);transition:opacity 0.25s,transform 0.25s}
+.proy-card:hover .pc-arrow{opacity:1;transform:scale(1)}
+
+/* ══════════════════════════════
+   CLIENTES
+══════════════════════════════ */
+#clientes{background:var(--white)}
+.clientes-intro{margin-bottom:2.5rem}
+.cli-grid{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--border)}
+.cli-cell{border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.6rem 1rem;display:flex;align-items:center;justify-content:center;min-height:75px;transition:background 0.2s}
+.cli-cell:hover{background:var(--off-white)}
+.cli-cell:nth-child(6n){border-right:none}
+.cli-cell span{font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--gray-300);text-align:center;line-height:1.2;transition:color 0.2s}
+.cli-cell:hover span{color:var(--navy)}
+
+/* ══════════════════════════════
+   CONTACTO
+══════════════════════════════ */
+#contacto{background:var(--navy);padding:clamp(3.5rem,7vw,6rem) clamp(1.5rem,5.5vw,4.5rem)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,6vw,6rem);align-items:start}
+.contact-left .h2{margin-bottom:1.1rem}
+.contact-left .body-text{margin-bottom:2rem}
+.contact-actions{display:flex;flex-wrap:wrap;gap:0.85rem}
+.contact-info{margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1);display:flex;flex-direction:column;gap:1rem}
+.ci-item{}
+.ci-label{font-size:0.62rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.25rem}
+.ci-value{font-size:0.88rem;color:rgba(255,255,255,0.7)}
+.contact-right{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:2rem}
+.contact-right h3{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--white);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+.cf-field{margin-bottom:1rem}
+.cf-label{font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);display:block;margin-bottom:0.4rem}
+.cf-input,.cf-textarea{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);padding:0.7rem 0.85rem;font-size:0.87rem;color:var(--white);font-family:'Inter',sans-serif;transition:border-color 0.2s;border-radius:1px;outline:none}
+.cf-input::placeholder,.cf-textarea::placeholder{color:rgba(255,255,255,0.25)}
+.cf-input:focus,.cf-textarea:focus{border-color:rgba(141,198,63,0.5)}
+.cf-textarea{resize:vertical;min-height:100px}
+.cf-submit{width:100%;margin-top:0.5rem;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy-dk);background:var(--lime);border:none;padding:0.85rem;cursor:pointer;transition:background 0.2s;border-radius:1px}
+.cf-submit:hover{background:var(--lime-dk)}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer{background:var(--navy-bg);padding:2.5rem clamp(1.5rem,5.5vw,4.5rem) 1.5rem;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:1.5rem}
+.footer-brand p{font-size:0.78rem;line-height:1.7;color:rgba(255,255,255,0.32);margin-top:0.9rem;max-width:230px}
+.footer-col h4{font-size:0.62rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:1.1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.55rem}
+.footer-col ul li a{font-size:0.8rem;color:rgba(255,255,255,0.44);transition:color 0.2s}.footer-col ul li a:hover{color:var(--white)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
+.footer-copy,.footer-loc{font-size:0.68rem;color:rgba(255,255,255,0.2)}
+
+/* ══════════════════════════════
+   REVEAL ANIMATION
+══════════════════════════════ */
+.rv{opacity:0;transform:translateY(18px);transition:opacity 0.6s ease,transform 0.6s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:0.08s}.rv.d2{transition-delay:0.16s}.rv.d3{transition-delay:0.24s}
+.rv.d4{transition-delay:0.32s}.rv.d5{transition-delay:0.4s}.rv.d6{transition-delay:0.48s}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media(max-width:1024px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .empresa-grid{grid-template-columns:1fr}
+  .branding-grid{grid-template-columns:1fr}
+  .branding-visual{height:240px}
+  .ev-categories{grid-template-columns:1fr}
+  .ev-cat{border-right:none;border-bottom:1px solid var(--border)}
+  .ev-cat:last-child{border-bottom:none}
+  .proy-grid{grid-template-columns:1fr 1fr;grid-auto-rows:200px}
+  .proy-card:nth-child(n){grid-column:span 1}
+  .cli-grid{grid-template-columns:repeat(4,1fr)}
+  .cli-cell:nth-child(6n){border-right:1px solid var(--border)}
+  .cli-cell:nth-child(4n){border-right:none}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+}
+@media(max-width:680px){
+  .svc-grid{grid-template-columns:1fr}
+  .proy-grid{grid-template-columns:1fr;grid-auto-rows:180px}
+  .ev-list-grid{grid-template-columns:1fr}
+  .cli-grid{grid-template-columns:repeat(3,1fr)}
+  .cli-cell:nth-child(4n){border-right:1px solid var(--border)}
+  .cli-cell:nth-child(3n){border-right:none}
+  .hero-stats{gap:0}
+  .hstat{padding:0 1.5rem 0 0;margin:0 1.5rem 0 0}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .contact-actions{flex-direction:column}
+}
+@media(max-width:420px){
+  .cli-grid{grid-template-columns:repeat(2,1fr)}
+  .cli-cell:nth-child(3n){border-right:1px solid var(--border)}
+  .cli-cell:nth-child(2n){border-right:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo" aria-label="POSTER Group — Inicio">
+    <!-- Logo SVG recreado con precisión -->
+    <svg viewBox="0 0 260 60" xmlns="http://www.w3.org/2000/svg" aria-label="POSTER Group">
+      <defs>
+        <clipPath id="arcClip"><rect x="0" y="0" width="56" height="60"/></clipPath>
+      </defs>
+      <!-- Arco exterior (azul claro) -->
+      <path d="M6 52 C6 24 18 10 42 8" stroke="rgba(255,255,255,0.85)" stroke-width="5.5" stroke-linecap="round" fill="none" clip-path="url(#arcClip)"/>
+      <!-- Arco medio -->
+      <path d="M13 52 C13 28 22 16 42 14" stroke="rgba(255,255,255,0.6)" stroke-width="4" stroke-linecap="round" fill="none" clip-path="url(#arcClip)"/>
+      <!-- Arco interior -->
+      <path d="M20 52 C20 33 27 22 42 21" stroke="rgba(255,255,255,0.35)" stroke-width="3" stroke-linecap="round" fill="none" clip-path="url(#arcClip)"/>
+      <!-- Óvalo lime -->
+      <ellipse cx="42" cy="35" rx="12" ry="8.5" fill="#8dc63f"/>
+      <!-- Texto POSTER -->
+      <text x="62" y="47" font-family="'Arial Black','Impact',sans-serif" font-weight="900" font-size="32" fill="white" letter-spacing="0.5">POSTER</text>
+    </svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#empresa">Empresa</a></li>
+    <li><a href="#servicios">Productos & Servicios</a></li>
+    <li><a href="#branding3d">3D Branding</a></li>
+    <li><a href="#eventos">Eventos</a></li>
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Contacto</a>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mob-menu" id="mob-menu">
+  <button class="mob-close" id="mob-close">✕</button>
+  <a href="#empresa" class="mm">Empresa</a>
+  <a href="#servicios" class="mm">Productos & Servicios</a>
+  <a href="#branding3d" class="mm">3D Branding</a>
+  <a href="#eventos" class="mm">Eventos</a>
+  <a href="#proyectos" class="mm">Proyectos</a>
+  <a href="#clientes" class="mm">Clientes</a>
+  <a href="#contacto" class="mm">Contacto</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-vline"></div>
+  <div class="hero-diag"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Buenos Aires, Argentina · Desde 1985</p>
+    <h1 class="hero-h1">
+      Líderes en<br>
+      Publicidad<br>
+      Deportiva &<br>
+      3D Branding
+    </h1>
+    <p class="hero-sub">Proveedores de eventos deportivos y culturales del más alto nivel nacional e internacional. Especialistas en publicidad perimetral, sistemas para estadios y 3D Branding desde el año 2000.</p>
+    <div class="hero-actions">
+      <a href="#empresa" class="btn btn-lime">Conocer la Empresa</a>
+      <a href="#contacto" class="btn btn-outline-white">Solicitar Propuesta</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">1985<sup></sup></div><div class="hstat-l">Fundación</div></div>
+      <div class="hstat"><div class="hstat-n">40<sup>+</sup></div><div class="hstat-l">Años activos</div></div>
+      <div class="hstat"><div class="hstat-n">2000<sup></sup></div><div class="hstat-l">Inicio 3D Branding</div></div>
+      <div class="hstat"><div class="hstat-n">Sudamérica<sup></sup></div><div class="hstat-l">Licencia internacional</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EMPRESA ═══ -->
+<section id="empresa" class="section">
+  <p class="label rv">Quiénes Somos</p>
+  <h2 class="h2 rv d1">Empresa</h2>
+  <div class="empresa-grid">
+    <div class="empresa-text rv d1">
+      <p class="body-text">POSTER se inicia en 1985 en Buenos Aires, Argentina. Con una gran experiencia en la comercialización de productos y servicios publicitarios, somos destacados proveedores de eventos deportivos y culturales del más alto nivel nacional e internacional.</p>
+      <p class="body-text">Durante años hemos trabajado con las marcas más importantes en eventos internacionales de primer nivel, adquiriendo un liderazgo en el mercado y una gran confianza de nuestros clientes.</p>
+      <p class="body-text">Somos líderes en la producción de <strong>publicidad perimetral y sistemas para estadios deportivos</strong> (indoor y outdoor) maximizando el impacto de las marcas en los espectadores y en la audiencia televisiva.</p>
+      <p class="body-text">Desde 2001, contamos con <strong>licencia internacional para desarrollar 3D Branding en Sudamérica</strong>, otorgada por Three-D-Signs internacional de Inglaterra.</p>
+      <p class="body-text">Trabajamos habitualmente para grupos multimedios, federaciones y asociaciones deportivas, empresas de sport marketing y entidades que promueven eventos de rugby, golf, polo, vóley, fútbol, básquetbol, tenis, equitación, turf, automovilismo, grandes exposiciones de arte y espectáculos en teatros y estadios.</p>
+    </div>
+    <div class="rv d2">
+      <div class="empresa-aside">
+        <div class="ea-block">
+          <div class="ea-block-title">Trayectoria desde 1985</div>
+          <div class="ea-block-text">Más de cuatro décadas de experiencia en la producción e implementación de publicidad en eventos de primer nivel nacional e internacional.</div>
+        </div>
+        <div class="ea-block">
+          <div class="ea-block-title">Licencia Internacional 3D</div>
+          <div class="ea-block-text">Desde 2001, únicos licenciatarios para desarrollar 3D Branding en Sudamérica, otorgado por Three-D-Signs International de Inglaterra.</div>
+        </div>
+        <div class="ea-block">
+          <div class="ea-block-title">Liderazgo en el Mercado</div>
+          <div class="ea-block-text">Líderes en publicidad perimetral y sistemas para estadios, maximizando el impacto de marca en espectadores y audiencia televisiva.</div>
+        </div>
+        <div class="ea-block">
+          <div class="ea-block-title">Cobertura Regional</div>
+          <div class="ea-block-text">Sistema de logística sincronizado para transporte, montaje y desmontaje en Argentina y Sudamérica.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCTOS & SERVICIOS ═══ -->
+<section id="servicios" class="section" style="background:var(--off-white)">
+  <div class="servicios-intro rv">
+    <p class="label">Productos & Servicios</p>
+    <h2 class="h2">Soluciones Publicitarias Integrales</h2>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card rv d1">
+      <div class="svc-n">01</div>
+      <div class="svc-title">Planificación & Estrategia</div>
+      <p class="svc-text">Planificamos y desarrollamos de acuerdo a las necesidades del evento para maximizar los resultados de la implementación publicitaria de una marca. Siguiendo el plan de marketing, diseñamos la mejor opción promocional.</p>
+    </div>
+    <div class="svc-card rv d2">
+      <div class="svc-n">02</div>
+      <div class="svc-title">Publicidad Perimetral</div>
+      <p class="svc-text">Líderes en sistemas de publicidad perimetral para estadios deportivos indoor y outdoor. Maximizamos el impacto de las marcas tanto en los espectadores presentes como en la audiencia televisiva.</p>
+    </div>
+    <div class="svc-card rv d3">
+      <div class="svc-n">03</div>
+      <div class="svc-title">Materiales & Producción</div>
+      <p class="svc-text">Trabajamos con una variada gama de materiales adaptados a las exigencias de cada cliente. Brindamos asistencia permanente en la elección de materiales y equipos, con foco en calidad y durabilidad.</p>
+    </div>
+    <div class="svc-card rv d1">
+      <div class="svc-n">04</div>
+      <div class="svc-title">Instalación & Mantenimiento</div>
+      <p class="svc-text">Damos gran importancia a la correcta instalación y mantenimiento de los materiales en el lugar del evento. Los problemas complejos pasan a ser sencillos gracias a nuestra experiencia de décadas en el sector.</p>
+    </div>
+    <div class="svc-card rv d2">
+      <div class="svc-n">05</div>
+      <div class="svc-title">Logística Integral</div>
+      <p class="svc-text">Nuestro sincronizado sistema de logística aporta una solución integral al transporte, montaje y desmontaje de los materiales en Argentina y Sudamérica, garantizando tiempos y condiciones de entrega.</p>
+    </div>
+    <div class="svc-card rv d3">
+      <div class="svc-n">06</div>
+      <div class="svc-title">Depósito & Stock</div>
+      <p class="svc-text">Ofrecemos un excelente sistema de depósito y control de stock del material publicitario y promocional de nuestros clientes, asegurando disponibilidad y cuidado óptimo entre evento y evento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3D BRANDING ═══ -->
+<section id="branding3d" class="section" style="background:var(--navy-dk)">
+  <p class="label on-dark rv">Especialidad</p>
+  <h2 class="h2 white rv d1">3D Branding</h2>
+  <div class="branding-grid">
+    <div class="branding-text rv d1">
+      <p class="body-text white">El 3D Branding consiste en pintar la marca del sponsor sobre el terreno de juego con un sistema que permite que los televidentes perciban el mensaje publicitario con efecto tridimensional.</p>
+      <p class="body-text white">La ventaja diferencial reside en que la marca logra el <strong style="color:rgba(255,255,255,0.85)">mayor nivel de exposición</strong> en comparación con la publicidad convencional, dado que el juego se desarrolla sobre el logotipo pintado. Además, tiene un tamaño increíblemente superior al resto de la publicidad.</p>
+      <p class="body-text white">En las mejores competencias deportivas del mundo, la publicidad 3D sobre césped es el producto más buscado por las empresas que invierten en deportes. Es un espacio exclusivo al que solo algunos sponsors acceden — la marca sobre la cancha, participando del juego mismo.</p>
+      <div class="highlight-box">
+        <p>En el año 2000 nos capacitamos y trajimos a Argentina este sistema, que desde entonces utilizamos en los mejores eventos deportivos de Argentina y el resto de América. Contamos con licencia internacional de Three-D-Signs International (Inglaterra) para operar en Sudamérica desde 2001.</p>
+      </div>
+      <div style="margin-top:1.8rem">
+        <a href="#contacto" class="btn btn-lime">Consultar sobre 3D Branding</a>
+      </div>
+    </div>
+    <div class="branding-visual rv d2">
+      <div class="bv-main">
+        <div class="bv-main-label">3D</div>
+        <div class="bv-main-inner">
+          <div class="big-num">2000</div>
+          <div class="big-lbl">Año de inicio en Argentina</div>
+        </div>
+      </div>
+      <div class="bv-row">
+        <div class="bv-sm">
+          <div class="bv-sm-n" style="color:var(--lime)">2001</div>
+          <div class="bv-sm-l">Licencia internacional</div>
+        </div>
+        <div class="bv-sm">
+          <div class="bv-sm-n">N°1</div>
+          <div class="bv-sm-l">En Sudamérica</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EVENTOS ═══ -->
+<section id="eventos" class="section" style="background:var(--white)">
+  <div class="eventos-intro rv">
+    <p class="label">Cobertura de Eventos</p>
+    <h2 class="h2">Deportivos & Culturales</h2>
+  </div>
+  <div class="ev-categories rv d1">
+    <div class="ev-cat">
+      <div class="ev-cat-title">Deportes con Pelota</div>
+      <p class="ev-cat-text">Rugby, fútbol, básquetbol, vóley, polo, tenis y golf. Eventos nacionales e internacionales, desde finales de clubes hasta competencias continentales.</p>
+    </div>
+    <div class="ev-cat">
+      <div class="ev-cat-title">Deportes & Motor</div>
+      <p class="ev-cat-text">Equitación, turf y automovilismo. Experiencia en pistas, hipódromos y circuitos de alta exigencia técnica y logística.</p>
+    </div>
+    <div class="ev-cat">
+      <div class="ev-cat-title">Cultura & Espectáculos</div>
+      <p class="ev-cat-text">Grandes muestras y exposiciones de arte, decoración, obras teatrales, recitales en estadios y teatros. Adaptación total al entorno del evento.</p>
+    </div>
+  </div>
+  <div class="ev-list-grid rv d2">
+    <div class="ev-list-block">
+      <div class="ev-list-title">Rugby — Eventos Destacados</div>
+      <div class="ev-list">
+        <ul>
+          <li>Rugby Championship Personal 2012 — Los Pumas vs Sudáfrica (Mendoza)</li>
+          <li>Rugby Championship Personal 2012 — Los Pumas vs Nueva Zelanda (La Plata)</li>
+          <li>Rugby Championship Personal 2012 — Los Pumas vs Australia (Rosario)</li>
+          <li>Los Pumas — Seleccionado Nacional (todos los test matches 1994–2012)</li>
+          <li>Seven Internacional de Viña del Mar 2012 (Reñaca, Chile)</li>
+          <li>Seven Internacional de Punta del Este 2012 (Maldonado, Uruguay)</li>
+          <li>Torneos de la URBA — Finales URBA (proveedor principal 1996–2012)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ev-list-block">
+      <div class="ev-list-title">Polo, Golf & Otros Deportes</div>
+      <div class="ev-list">
+        <ul>
+          <li>Campeonato Abierto Argentino de Polo (todas las ediciones desde 1993)</li>
+          <li>Abierto de Polo del Jockey Club 2012 (Jockey Club de San Isidro)</li>
+          <li>Abierto de Polo de Tortugas 2012</li>
+          <li>Remate Ellerstina 2012</li>
+          <li>Abiertos de Golf de la República (todos los torneos 1993–2012)</li>
+          <li>Autoclásica 2012 — Club de Autos Clásicos (Hipódromo de San Isidro)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROYECTOS ═══ -->
+<section id="proyectos" class="section" style="background:var(--gray-100)">
+  <div class="proy-intro rv">
+    <div>
+      <p class="label">Portfolio</p>
+      <h2 class="h2">Proyectos</h2>
+    </div>
+    <a href="#contacto" class="btn btn-outline-navy rv d2">Solicitar Propuesta</a>
+  </div>
+  <div class="proy-grid">
+    <div class="proy-card rv d1">
+      <div class="pc-bg pc-b1"></div>
+      <div class="pc-letter">POLO</div>
+      <div class="pc-overlay">
+        <span class="pc-cat">Polo · Argentina</span>
+        <div class="pc-name">Campeonato Abierto Argentino de Polo</div>
+      </div>
+      <div class="pc-arrow"><svg viewBox="0 0 14 14" fill="none" stroke="#142850" stroke-width="2.2" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
+    </div>
+    <div class="proy-card rv d2">
+      <div class="pc-bg pc-b2"></div>
+      <div class="pc-letter">RUGBY</div>
+      <div class="pc-overlay">
+        <span class="pc-cat">Rugby · Internacional</span>
+        <div class="pc-name">Rugby Championship — Los Pumas 2012</div>
+      </div>
+      <div class="pc-arrow"><svg viewBox="0 0 14 14" fill="none" stroke="#142850" stroke-width="2.2" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
+    </div>
+    <div class="proy-card rv d1">
+      <div class="pc-bg pc-b3"></div>
+      <div class="pc-letter">3D</div>
+      <div class="pc-overlay">
+        <span class="pc-cat">3D Branding · Sudamérica</span>
+        <div class="pc-name">3D Branding — Eventos Deportivos</div>
+      </div>
+      <div class="pc-arrow"><svg viewBox="0 0 14 14" fill="none" stroke="#142850" stroke-width="2.2" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
+    </div>
+    <div class="proy-card rv d2">
+      <div class="pc-bg pc-b4"></div>
+      <div class="pc-letter">GOLF</div>
+      <div class="pc-overlay">
+        <span class="pc-cat">Golf · Argentina</span>
+        <div class="pc-name">Abiertos de Golf de la República</div>
+      </div>
+      <div class="pc-arrow"><svg viewBox="0 0 14 14" fill="none" stroke="#142850" stroke-width="2.2" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
+    </div>
+    <div class="proy-card rv d3">
+      <div class="pc-bg pc-b5"></div>
+      <div class="pc-letter">SEVEN</div>
+      <div class="pc-overlay">
+        <span class="pc-cat">Rugby · Regional</span>
+        <div class="pc-name">Seven Internacional — Viña del Mar & Punta del Este</div>
+      </div>
+      <div class="pc-arrow"><svg viewBox="0 0 14 14" fill="none" stroke="#142850" stroke-width="2.2" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CLIENTES ═══ -->
+<section id="clientes" class="section" style="background:var(--white)">
+  <div class="clientes-intro rv">
+    <p class="label">Nuestros Clientes</p>
+    <h2 class="h2">Confianza de las Marcas Líderes</h2>
+    <p class="body-text" style="margin-top:0.5rem;max-width:540px">Trabajamos con las marcas más importantes en eventos internacionales de primer nivel, grupos multimedios, federaciones, asociaciones deportivas y empresas de sport marketing.</p>
+  </div>
+  <div class="cli-grid">
+    <div class="cli-cell rv d1"><span>Personal</span></div>
+    <div class="cli-cell rv d2"><span>UAR</span></div>
+    <div class="cli-cell rv d3"><span>AAP — Polo</span></div>
+    <div class="cli-cell rv d4"><span>AAGR — Golf</span></div>
+    <div class="cli-cell rv d5"><span>URBA</span></div>
+    <div class="cli-cell rv d6"><span>Jockey Club</span></div>
+    <div class="cli-cell rv d1"><span>Club Tortugas</span></div>
+    <div class="cli-cell rv d2"><span>Ellerstina</span></div>
+    <div class="cli-cell rv d3"><span>Hipódromo San Isidro</span></div>
+    <div class="cli-cell rv d4"><span>Federación Arg. Rugby</span></div>
+    <div class="cli-cell rv d5"><span>Claro Sports</span></div>
+    <div class="cli-cell rv d6"><span>TyC Sports</span></div>
+    <div class="cli-cell rv d1"><span>ESPN Argentina</span></div>
+    <div class="cli-cell rv d2"><span>Fox Sports</span></div>
+    <div class="cli-cell rv d3"><span>Banco Nación</span></div>
+    <div class="cli-cell rv d4"><span>YPF</span></div>
+    <div class="cli-cell rv d5"><span>Banco Santander</span></div>
+    <div class="cli-cell rv d6"><span>Adidas Argentina</span></div>
+  </div>
+</section>
+
+<!-- ═══ CONTACTO ═══ -->
+<section id="contacto" style="background:var(--navy);padding:clamp(3.5rem,7vw,6rem) clamp(1.5rem,5.5vw,4.5rem)">
+  <div class="contact-grid">
+    <div class="contact-left rv">
+      <p class="label on-dark">Contacto</p>
+      <h2 class="h2 white">Hablemos de su Próximo Evento</h2>
+      <p class="body-text white" style="margin-bottom:2rem">Contamos con más de 40 años de experiencia en la implementación publicitaria en eventos deportivos y culturales. Consultenos sin compromiso.</p>
+      <div class="contact-actions">
+        <a href="https://wa.me/541143252569" class="btn-wa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp
+        </a>
+        <a href="mailto:info@postergroup.com.ar" class="btn btn-outline-white">Enviar Email</a>
+      </div>
+      <div class="contact-info">
+        <div class="ci-item">
+          <div class="ci-label">Dirección</div>
+          <div class="ci-value">Santa Fe 995, Piso 4 — Buenos Aires, Argentina C1059ACC</div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-label">Teléfono / Fax</div>
+          <div class="ci-value">+54 11 4325-2569</div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-label">Sitio web</div>
+          <div class="ci-value">www.postergroup.com.ar</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right rv d2">
+      <h3>Consulta Rápida</h3>
+      <div class="cf-field">
+        <label class="cf-label">Nombre y Apellido</label>
+        <input class="cf-input" type="text" placeholder="Su nombre completo">
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">Empresa</label>
+        <input class="cf-input" type="text" placeholder="Nombre de la empresa">
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">Email</label>
+        <input class="cf-input" type="email" placeholder="correo@empresa.com">
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">Tipo de Evento</label>
+        <input class="cf-input" type="text" placeholder="Ej: Torneo de Rugby, Polo, etc.">
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">Mensaje</label>
+        <textarea class="cf-textarea" placeholder="Cuéntenos sobre su proyecto o evento..."></textarea>
+      </div>
+      <button class="cf-submit">Enviar Consulta</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <svg viewBox="0 0 260 60" xmlns="http://www.w3.org/2000/svg" style="height:28px;width:auto">
+        <defs><clipPath id="fc"><rect x="0" y="0" width="56" height="60"/></clipPath></defs>
+        <path d="M6 52 C6 24 18 10 42 8" stroke="rgba(255,255,255,0.7)" stroke-width="5.5" stroke-linecap="round" fill="none" clip-path="url(#fc)"/>
+        <path d="M13 52 C13 28 22 16 42 14" stroke="rgba(255,255,255,0.45)" stroke-width="4" stroke-linecap="round" fill="none" clip-path="url(#fc)"/>
+        <path d="M20 52 C20 33 27 22 42 21" stroke="rgba(255,255,255,0.25)" stroke-width="3" stroke-linecap="round" fill="none" clip-path="url(#fc)"/>
+        <ellipse cx="42" cy="35" rx="12" ry="8.5" fill="#8dc63f"/>
+        <text x="62" y="47" font-family="'Arial Black','Impact',sans-serif" font-weight="900" font-size="32" fill="white" letter-spacing="0.5">POSTER</text>
+      </svg>
+      <p>Especialistas en publicidad deportiva, publicidad perimetral y 3D Branding para eventos deportivos y culturales. Buenos Aires, Argentina — Desde 1985.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#empresa">Empresa</a></li>
+        <li><a href="#servicios">Productos & Servicios</a></li>
+        <li><a href="#branding3d">3D Branding</a></li>
+        <li><a href="#eventos">Eventos</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#clientes">Clientes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#servicios">Publicidad Perimetral</a></li>
+        <li><a href="#branding3d">3D Branding</a></li>
+        <li><a href="#servicios">Producción de Materiales</a></li>
+        <li><a href="#servicios">Instalación & Logística</a></li>
+        <li><a href="#servicios">Control de Stock</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="#">Santa Fe 995, Piso 4</a></li>
+        <li><a href="#">Buenos Aires, Argentina</a></li>
+        <li><a href="tel:+541143252569">+54 11 4325-2569</a></li>
+        <li><a href="mailto:info@postergroup.com.ar">info@postergroup.com.ar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2003–2025 POSTER Publicidad. Derechos Reservados.</span>
+    <span class="footer-loc">🇦🇷 Buenos Aires, Argentina</span>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>50));
+
+// Mobile menu
+const hbg=document.getElementById('hamburger'),mob=document.getElementById('mob-menu'),cls=document.getElementById('mob-close');
+hbg.addEventListener('click',()=>mob.classList.add('open'));
+cls.addEventListener('click',()=>mob.classList.remove('open'));
+document.querySelectorAll('.mm').forEach(l=>l.addEventListener('click',()=>mob.classList.remove('open')));
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:0.08});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+}));
+
+// Form (placeholder behavior)
+document.querySelector('.cf-submit').addEventListener('click',function(){
+  const inputs=document.querySelectorAll('.cf-input,.cf-textarea');
+  let ok=true;
+  inputs.forEach(i=>{if(!i.value.trim())ok=false});
+  if(ok){this.textContent='¡Consulta Enviada!';this.style.background='#6fa82e';setTimeout(()=>{this.textContent='Enviar Consulta';this.style.background='';inputs.forEach(i=>i.value='')},3000)}
+  else{this.textContent='Complete todos los campos';setTimeout(()=>this.textContent='Enviar Consulta',2000)}
+});
+</script>
+</body>
+</html>
